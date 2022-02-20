@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  </head>
+  <body>
+    <!-- -------------------------- html section ------------------------------------- -->
+
+    <!-- -------------------------- html section ------------------------------------- -->
+
+    <div id="app">
+      <div>
+        <form v-on:submit.prevent="send">
+          <div>
+            <div class="form-field">
+              <label for="">SubES Item</label><br />
+
+              <select name="" id="subes_item" style="width: 177px">
+                <option value="Food">Food</option>
+                <option value="Water">Water</option>
+                <option value="raw materials">Raw Materials</option>
+                <option value="Generic Resources">Generic Resources</option>
+                <option value="Medicinal resources">Medicinal resources</option>
+                <option value="Ornamental resources">
+                  Ornamental resources
+                </option>
+              </select>
+
+              <br />
+
+              <label for="">SubES Name</label><br />
+              <input type="text" id="subes_name" /><br />
+
+              <label for="">SubES Quantity</label><br />
+              <input type="text" id="subes_quantity" /><br />
+
+              <label for="">SubES Quantity Unit</label><br />
+              <input type="text" id="subes_quantity_unit" /><br />
+
+              <div>
+                <label for="">SubES Value</label><br />
+                <input type="text" id="subes_value" /><br />
+              </div>
+
+              <label for="">SubES Value Unit</label><br />
+              <input type="text" id="subes_value_unit" /><br />
+
+              <label for="">SubES Validation</label><br />
+              <input type="text" id="subes_validation" /><br />
+            </div>
+          </div>
+
+          <br />
+          <button>Submit</button>
+        </form>
+
+        <!-- ----------------------------------- table --------------------------------------------- -->
+
+        <br />
+        <table style="width: 100%">
+          <tr>
+            <th style="border: 1px solid red">SubES Item</th>
+            <th style="border: 1px solid red">SubES Name</th>
+            <th style="border: 1px solid red">SubES Quantity</th>
+            <th style="border: 1px solid red">SubES Quantity Unit</th>
+            <th style="border: 1px solid red">SubES Value</th>
+            <th style="border: 1px solid red">SubES Value Unit</th>
+            <th style="border: 1px solid red">SubES Validation</th>
+            <th style="border: 1px solid red">Remove item</th>
+            <th style="border: 1px solid red">Edit item</th>
+          </tr>
+
+          <tr v-for="(item,index) in fullData" :key="item.subes_item">
+            <td style="border: 1px solid red">{{ item.subes_item }}</td>
+            <td style="border: 1px solid red">{{ item.subes_name }}</td>
+            <td style="border: 1px solid red">{{ item.subes_quantity }}</td>
+            <td style="border: 1px solid red">
+              {{ item.subes_quantity_unit }}
+            </td>
+            <td style="border: 1px solid red">{{ item.subes_value }}</td>
+            <td style="border: 1px solid red">{{ item.subes_value_unit }}</td>
+            <td style="border: 1px solid red">{{ item.subes_validation }}</td>
+            <td style="border: 1px solid red">
+              <button v-on:click="removeItem(index)">Remove Item</button>
+            </td>
+
+            <td style="border: 1px solid red">
+              <button v-on:click="editItem(index)">Edit Item</button>
+            </td>
+          </tr>
+        </table>
+
+        <!-- ----------------------------------- table --------------------------------------------- -->
+
+        <!-- --------------------------------- edit form ------------------------------ -->
+
+        <br /><br />
+
+        <h3>Edit Form</h3>
+
+        <form v-on:submit.prevent="edit">
+          <div>
+            <div class="form-field">
+              <input type="hidden" id="edit_id" /><br />
+
+              <label for="">SubES Item</label><br />
+
+              <select name="" id="edit_subes_item" style="width: 177px">
+                <option value="Food">Food</option>
+                <option value="Water">Water</option>
+                <option value="raw materials">Raw Materials</option>
+                <option value="Generic Resources">Generic Resources</option>
+                <option value="Medicinal resources">Medicinal resources</option>
+                <option value="Ornamental resources">
+                  Ornamental resources
+                </option>
+              </select>
+
+              <br />
+
+              <label for="">SubES Name</label><br />
+              <input type="text" id="edit_subes_name" /><br />
+
+              <label for="">SubES Quantity</label><br />
+              <input type="text" id="edit_subes_quantity" /><br />
+
+              <label for="">SubES Quantity Unit</label><br />
+              <input type="text" id="edit_subes_quantity_unit" /><br />
+
+              <div>
+                <label for="">SubES Value</label><br />
+                <input type="text" id="edit_subes_value" /><br />
+              </div>
+
+              <label for="">SubES Value Unit</label><br />
+              <input type="text" id="edit_subes_value_unit" /><br />
+
+              <label for="">SubES Validation</label><br />
+              <input type="text" id="edit_subes_validation" /><br />
+            </div>
+          </div>
+
+          <br />
+          <button>Submit</button>
+        </form>
+
+        <!-- --------------------------------- edit form ------------------------------ -->
+      </div>
+    </div>
+  </body>
+
+  <!-- --------------------------- vue section --------------------------------------- -->
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "",
+        fullData: [],
+      },
+      methods: {
+        // ---------------------------- add item ----------------------
+
+        send() {
+          let formData = {
+            subes_item: subes_item.value,
+            subes_name: subes_name.value,
+            subes_quantity: subes_quantity.value,
+            subes_quantity_unit: subes_quantity_unit.value,
+            subes_value: subes_value.value,
+            subes_value_unit: subes_value_unit.value,
+            subes_validation: subes_validation.value,
+          };
+
+          this.fullData.push(formData);
+        },
+
+        // ---------------------------- add item ----------------------
+
+        // --------------------- remove item --------------------------
+
+        removeItem(index) {
+          this.fullData.splice(index, 1);
+        },
+
+        // --------------------- remove item --------------------------
+
+        // ----------------- edit ----------------------------------
+
+        editItem(index) {
+          let data = this.fullData[index];
+          edit_id.value = index;
+          edit_subes_item.value = data.subes_item;
+          edit_subes_name.value = data.subes_name;
+          edit_subes_quantity.value = data.subes_quantity;
+          edit_subes_quantity.value_unit = data.subes_quantity_unit;
+          edit_subes_value.value = data.subes_value;
+          edit_subes_value_unit.value = data.subes_value_unit;
+          edit_subes_validation.value = data.subes_validation;
+        },
+
+        edit() {
+          let edit_id_var = edit_id.value;
+
+          this.fullData[edit_id_var].subes_item = edit_subes_item.value;
+          this.fullData[edit_id_var].subes_name = edit_subes_name.value;
+          this.fullData[edit_id_var].subes_quantity = edit_subes_quantity.value;
+          this.fullData[edit_id_var].subes_quantity_unit =
+            edit_subes_quantity_unit.value;
+          this.fullData[edit_id_var].subes_value = edit_subes_value.value;
+          this.fullData[edit_id_var].subes_value_unit =
+            edit_subes_value_unit.value;
+          this.fullData[edit_id_var].subes_validation =
+            edit_subes_validation.value;
+        },
+
+        // ----------------- edit ----------------------------------
+      },
+    });
+  </script>
+
+  <!-- --------------------------- vue section --------------------------------------- -->
+
+  <script src="script.js"></script>
+</html>
