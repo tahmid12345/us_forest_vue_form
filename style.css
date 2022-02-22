@@ -1,0 +1,13 @@
+.input-display {
+  display: none;
+}
+
+.add-edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.edit-form-hidden {
+  display: none;
+}

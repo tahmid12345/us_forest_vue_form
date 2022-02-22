@@ -15,55 +15,409 @@
 
     <div id="app">
       <div>
-        <form v-on:submit.prevent="send">
+        <div class="add-edit-form">
+          <!-- ----------------------- Add form --------------------- -->
+
           <div>
-            <div class="form-field">
-              <label for="">SubES Item</label><br />
+            <h3>Add Form</h3>
 
-              <select name="" id="subes_item" style="width: 177px">
-                <option value="Food">Food</option>
-                <option value="Water">Water</option>
-                <option value="raw materials">Raw Materials</option>
-                <option value="Generic Resources">Generic Resources</option>
-                <option value="Medicinal resources">Medicinal resources</option>
-                <option value="Ornamental resources">
-                  Ornamental resources
-                </option>
-              </select>
-
-              <br />
-
-              <label for="">SubES Name</label><br />
-              <input type="text" id="subes_name" /><br />
-
-              <label for="">SubES Quantity</label><br />
-              <input type="text" id="subes_quantity" /><br />
-
-              <label for="">SubES Quantity Unit</label><br />
-              <input type="text" id="subes_quantity_unit" /><br />
-
+            <form v-on:submit.prevent="send">
               <div>
-                <label for="">SubES Value</label><br />
-                <input type="text" id="subes_value" /><br />
+                <!-- --------------------- es class items ------------------------ -->
+                <div>
+                  <select name="" id="" style="width: 177px" v-model="es_class">
+                    <option value="provisioning">Provisioning</option>
+                    <option value="regulating">Regulating</option>
+                    <option value="supporting">Supporting</option>
+                    <option value="cultural">Cultural</option>
+                  </select>
+                </div>
+
+                <!-- --------------------- es class items ------------------------ -->
+
+                <br />
+
+                <div class="form-field">
+                  <label for="">SubES Item</label><br />
+
+                  <!-- --------------------- provisioning -------------------------- -->
+
+                  <select name="" id="subes_item" style="width: 177px">
+                    <option value="Food" v-if="es_class === 'provisioning'">
+                      Food
+                    </option>
+                    <option value="Water" v-if="es_class === 'provisioning'">
+                      Water
+                    </option>
+                    <option
+                      value="raw materials"
+                      v-if="es_class === 'provisioning'"
+                    >
+                      Raw Materials
+                    </option>
+                    <option
+                      value="Generic Resources"
+                      v-if="es_class === 'provisioning'"
+                    >
+                      Generic Resources
+                    </option>
+                    <option
+                      value="Medicinal resources"
+                      v-if="es_class === 'provisioning'"
+                    >
+                      Medicinal resources
+                    </option>
+                    <option
+                      value="Ornamental resources"
+                      v-if=" es_class === 'provisioning' || es_class === 'regulating' "
+                    >
+                      Ornamental resources
+                    </option>
+
+                    <!-- --------------------- provisioning -------------------------- -->
+
+                    <!-- ----------------------- regulating -------------------------- -->
+
+                    <option
+                      value="Climate Regulation"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Climate Regulation
+                    </option>
+                    <option
+                      value="Regulation of water flows"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Regulation of water flows
+                    </option>
+                    <option
+                      value="Moderation of extreme events"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Moderation of extreme events
+                    </option>
+
+                    <option
+                      value="Waste Treatment"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Waste Treatment
+                    </option>
+                    <option
+                      value="Erosion Prevention"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Erosion Prevention
+                    </option>
+                    <option
+                      value="Maintenance of soil fertility"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Maintenance of soil fertility
+                    </option>
+
+                    <option
+                      value="Pollination"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Pollination
+                    </option>
+
+                    <option
+                      value="Boilogical Control"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Boilogical Control
+                    </option>
+
+                    <!-- ----------------------- regulating -------------------------- -->
+
+                    <!-- ----------------------- supporting -------------------------- -->
+
+                    <option
+                      value="Maintenance of life cycles"
+                      v-if="es_class === 'supporting'"
+                    >
+                      Maintenance of life cycles
+                    </option>
+
+                    <option
+                      value="Maintenance of generic diversity"
+                      v-if="es_class === 'supporting' || es_class === 'cultural' "
+                    >
+                      Maintenance of generic diversity
+                    </option>
+                    <!-- ----------------------- supporting -------------------------- -->
+
+                    <!-- ----------------------- cultural -------------------------- -->
+
+                    <option
+                      value="Opportunities for recreation and tourism"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Opportunities for recreation and tourism
+                    </option>
+
+                    <option
+                      value="Inspiration for culture, art and design"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Inspiration for culture, art and design
+                    </option>
+
+                    <option
+                      value="Inspiration for culture, art and design"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Spiritual experience
+                    </option>
+
+                    <option
+                      value="Information for cognitive development"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Information for cognitive development
+                    </option>
+
+                    <option
+                      value="Existence, bequest values"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Existence, bequest values
+                    </option>
+
+                    <!-- ----------------------- cultural -------------------------- -->
+                  </select>
+
+                  <br />
+
+                  <label for="">SubES Name</label><br />
+                  <input type="text" id="subes_name" /><br />
+
+                  <label for="">SubES Quantity</label><br />
+                  <input type="text" id="subes_quantity" /><br />
+
+                  <label for="">SubES Quantity Unit</label><br />
+                  <input type="text" id="subes_quantity_unit" /><br />
+
+                  <div>
+                    <label for="">SubES Value</label><br />
+                    <input type="text" id="subes_value" /><br />
+                  </div>
+
+                  <label for="">SubES Value Unit</label><br />
+                  <input type="text" id="subes_value_unit" /><br />
+
+                  <label for="">SubES Validation</label><br />
+                  <input type="text" id="subes_validation" /><br />
+                </div>
               </div>
 
-              <label for="">SubES Value Unit</label><br />
-              <input type="text" id="subes_value_unit" /><br />
-
-              <label for="">SubES Validation</label><br />
-              <input type="text" id="subes_validation" /><br />
-            </div>
+              <br />
+              <button>Add Item</button>
+            </form>
           </div>
 
-          <br />
-          <button>Submit</button>
-        </form>
+          <!-- ----------------------- Add form --------------------- -->
+
+          <!-- ----------------------- Edit Form -------------------- -->
+          <div id="edit_form_class">
+            <h3>Edit Form</h3>
+
+            <form v-on:submit.prevent="edit">
+              <div>
+                <div>
+                  <input type="hidden" id="edit_id" /><br />
+
+                  <label for="">SubES Item</label><br />
+
+                  <!-- --------------------- provisioning -------------------------- -->
+
+                  <select name="" id="edit_subes_item" style="width: 177px">
+                    <option value="Food" v-if="es_class === 'provisioning'">
+                      Food
+                    </option>
+                    <option value="Water" v-if="es_class === 'provisioning'">
+                      Water
+                    </option>
+                    <option
+                      value="raw materials"
+                      v-if="es_class === 'provisioning'"
+                    >
+                      Raw Materials
+                    </option>
+                    <option
+                      value="Generic Resources"
+                      v-if="es_class === 'provisioning'"
+                    >
+                      Generic Resources
+                    </option>
+                    <option
+                      value="Medicinal resources"
+                      v-if="es_class === 'provisioning'"
+                    >
+                      Medicinal resources
+                    </option>
+                    <option
+                      value="Ornamental resources"
+                      v-if=" es_class === 'provisioning' || es_class === 'regulating' "
+                    >
+                      Ornamental resources
+                    </option>
+
+                    <!-- --------------------- provisioning -------------------------- -->
+
+                    <!-- ----------------------- regulating -------------------------- -->
+
+                    <option
+                      value="Climate Regulation"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Climate Regulation
+                    </option>
+                    <option
+                      value="Regulation of water flows"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Regulation of water flows
+                    </option>
+                    <option
+                      value="Moderation of extreme events"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Moderation of extreme events
+                    </option>
+
+                    <option
+                      value="Waste Treatment"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Waste Treatment
+                    </option>
+                    <option
+                      value="Erosion Prevention"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Erosion Prevention
+                    </option>
+                    <option
+                      value="Maintenance of soil fertility"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Maintenance of soil fertility
+                    </option>
+
+                    <option
+                      value="Pollination"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Pollination
+                    </option>
+
+                    <option
+                      value="Boilogical Control"
+                      v-if="es_class === 'regulating'"
+                    >
+                      Boilogical Control
+                    </option>
+
+                    <!-- ----------------------- regulating -------------------------- -->
+
+                    <!-- ----------------------- supporting -------------------------- -->
+
+                    <option
+                      value="Maintenance of life cycles"
+                      v-if="es_class === 'supporting'"
+                    >
+                      Maintenance of life cycles
+                    </option>
+
+                    <option
+                      value="Maintenance of generic diversity"
+                      v-if="es_class === 'supporting' || es_class === 'cultural' "
+                    >
+                      Maintenance of generic diversity
+                    </option>
+                    <!-- ----------------------- supporting -------------------------- -->
+
+                    <!-- ----------------------- cultural -------------------------- -->
+
+                    <option
+                      value="Opportunities for recreation and tourism"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Opportunities for recreation and tourism
+                    </option>
+
+                    <option
+                      value="Inspiration for culture, art and design"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Inspiration for culture, art and design
+                    </option>
+
+                    <option
+                      value="Inspiration for culture, art and design"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Spiritual experience
+                    </option>
+
+                    <option
+                      value="Information for cognitive development"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Information for cognitive development
+                    </option>
+
+                    <option
+                      value="Existence, bequest values"
+                      v-if="es_class === 'cultural'"
+                    >
+                      Existence, bequest values
+                    </option>
+
+                    <!-- ----------------------- cultural -------------------------- -->
+                  </select>
+
+                  <br />
+
+                  <label for="">SubES Name</label><br />
+                  <input type="text" id="edit_subes_name" /><br />
+
+                  <label for="">SubES Quantity</label><br />
+                  <input type="text" id="edit_subes_quantity" /><br />
+
+                  <label for="">SubES Quantity Unit</label><br />
+                  <input type="text" id="edit_subes_quantity_unit" /><br />
+
+                  <div>
+                    <label for="">SubES Value</label><br />
+                    <input type="text" id="edit_subes_value" /><br />
+                  </div>
+
+                  <label for="">SubES Value Unit</label><br />
+                  <input type="text" id="edit_subes_value_unit" /><br />
+
+                  <label for="">SubES Validation</label><br />
+                  <input type="text" id="edit_subes_validation" /><br />
+                </div>
+              </div>
+
+              <br />
+              <button>Edit Item</button>
+            </form>
+          </div>
+
+          <!-- ----------------------- Edit Form -------------------- -->
+        </div>
 
         <!-- ----------------------------------- table --------------------------------------------- -->
 
         <br />
         <table style="width: 100%">
           <tr>
+            <th style="border: 1px solid red">ES Class</th>
             <th style="border: 1px solid red">SubES Item</th>
             <th style="border: 1px solid red">SubES Name</th>
             <th style="border: 1px solid red">SubES Quantity</th>
@@ -76,6 +430,7 @@
           </tr>
 
           <tr v-for="(item,index) in fullData" :key="item.subes_item">
+            <td style="border: 1px solid red">{{ es_class }}</td>
             <td style="border: 1px solid red">{{ item.subes_item }}</td>
             <td style="border: 1px solid red">{{ item.subes_name }}</td>
             <td style="border: 1px solid red">{{ item.subes_quantity }}</td>
@@ -99,132 +454,12 @@
 
         <!-- --------------------------------- edit form ------------------------------ -->
 
-        <br /><br />
-
-        <h3>Edit Form</h3>
-
-        <form v-on:submit.prevent="edit">
-          <div>
-            <div class="form-field">
-              <input type="hidden" id="edit_id" /><br />
-
-              <label for="">SubES Item</label><br />
-
-              <select name="" id="edit_subes_item" style="width: 177px">
-                <option value="Food">Food</option>
-                <option value="Water">Water</option>
-                <option value="raw materials">Raw Materials</option>
-                <option value="Generic Resources">Generic Resources</option>
-                <option value="Medicinal resources">Medicinal resources</option>
-                <option value="Ornamental resources">
-                  Ornamental resources
-                </option>
-              </select>
-
-              <br />
-
-              <label for="">SubES Name</label><br />
-              <input type="text" id="edit_subes_name" /><br />
-
-              <label for="">SubES Quantity</label><br />
-              <input type="text" id="edit_subes_quantity" /><br />
-
-              <label for="">SubES Quantity Unit</label><br />
-              <input type="text" id="edit_subes_quantity_unit" /><br />
-
-              <div>
-                <label for="">SubES Value</label><br />
-                <input type="text" id="edit_subes_value" /><br />
-              </div>
-
-              <label for="">SubES Value Unit</label><br />
-              <input type="text" id="edit_subes_value_unit" /><br />
-
-              <label for="">SubES Validation</label><br />
-              <input type="text" id="edit_subes_validation" /><br />
-            </div>
-          </div>
-
-          <br />
-          <button>Submit</button>
-        </form>
+        <br />
 
         <!-- --------------------------------- edit form ------------------------------ -->
       </div>
     </div>
   </body>
-
-  <!-- --------------------------- vue section --------------------------------------- -->
-
-  <script>
-    var app = new Vue({
-      el: "#app",
-      data: {
-        message: "",
-        fullData: [],
-      },
-      methods: {
-        // ---------------------------- add item ----------------------
-
-        send() {
-          let formData = {
-            subes_item: subes_item.value,
-            subes_name: subes_name.value,
-            subes_quantity: subes_quantity.value,
-            subes_quantity_unit: subes_quantity_unit.value,
-            subes_value: subes_value.value,
-            subes_value_unit: subes_value_unit.value,
-            subes_validation: subes_validation.value,
-          };
-
-          this.fullData.push(formData);
-        },
-
-        // ---------------------------- add item ----------------------
-
-        // --------------------- remove item --------------------------
-
-        removeItem(index) {
-          this.fullData.splice(index, 1);
-        },
-
-        // --------------------- remove item --------------------------
-
-        // ----------------- edit ----------------------------------
-
-        editItem(index) {
-          let data = this.fullData[index];
-          edit_id.value = index;
-          edit_subes_item.value = data.subes_item;
-          edit_subes_name.value = data.subes_name;
-          edit_subes_quantity.value = data.subes_quantity;
-          edit_subes_quantity.value_unit = data.subes_quantity_unit;
-          edit_subes_value.value = data.subes_value;
-          edit_subes_value_unit.value = data.subes_value_unit;
-          edit_subes_validation.value = data.subes_validation;
-        },
-
-        edit() {
-          let edit_id_var = edit_id.value;
-
-          this.fullData[edit_id_var].subes_item = edit_subes_item.value;
-          this.fullData[edit_id_var].subes_name = edit_subes_name.value;
-          this.fullData[edit_id_var].subes_quantity = edit_subes_quantity.value;
-          this.fullData[edit_id_var].subes_quantity_unit =
-            edit_subes_quantity_unit.value;
-          this.fullData[edit_id_var].subes_value = edit_subes_value.value;
-          this.fullData[edit_id_var].subes_value_unit =
-            edit_subes_value_unit.value;
-          this.fullData[edit_id_var].subes_validation =
-            edit_subes_validation.value;
-        },
-
-        // ----------------- edit ----------------------------------
-      },
-    });
-  </script>
-
-  <!-- --------------------------- vue section --------------------------------------- -->
 
   <script src="script.js"></script>
 </html>
