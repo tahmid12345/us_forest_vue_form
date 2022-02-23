@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <form v-on:submit.prevent="add_district">
+          <select
+            name=""
+            id="district_name"
+            v-on:click="district_name_function"
+          >
+            <option value="bagerhat">Bagerhat</option>
+            <option value="Bandarban">Bandarban</option>
+            <option value="Barguna">Barguna</option>
+            <option value="Barishal">Barishal</option>
+            <option value="Bhola">Bhola</option>
+            <option value="Brahamanbaria">Brahamanbaria</option>
+            <option value="Chandpur">Chandpur</option>
+            <option value="Chattogram">Chattogram</option>
+            <option value="Chuadanga">Chuadanga</option>
+            <option value="Cumilla">Cumilla</option>
+            <option value="Cox's Bazar">Cox's Bazar</option>
+            <option value="Dhaka">Dhaka</option>
+
+            <option value="Dinajpur">Dinajpur</option>
+            <option value="Faridpur">Faridpur</option>
+            <option value="Feni">Feni</option>
+            <option value="Gaibandha">Gaibandha</option>
+            <option value="Gazipur">Gazipur</option>
+            <option value="Gopalganj">Gopalganj</option>
+            <option value="Habiganj">Habiganj</option>
+            <option value="Jamalpur">Jamalpur</option>
+            <option value="Jashore">Jashore</option>
+            <option value="Jhalokati">Jhalokati</option>
+            <option value="Jhenaidah">Jhenaidah</option>
+            <option value="Joypurhat">Joypurhat</option>
+            <option value="Khagrachhari">Khagrachhari</option>
+            <option value="Khulna">Khulna</option>
+            <option value="Kishoreganj">Kishoreganj</option>
+            <option value="Kurigram">Kurigram</option>
+            <option value="Kushtia">Kushtia</option>
+
+            <option value="Lakshmipur">Lakshmipur</option>
+            <option value="Lalmonirhat">Lalmonirhat</option>
+            <option value="Madaripur">Madaripur</option>
+            <option value="Magura">Magura</option>
+            <option value="Manikganj">Manikganj</option>
+            <option value="Maulvibazar">Maulvibazar</option>
+            <option value="Meherpur">Meherpur</option>
+            <option value="Munshiganj">Munshiganj</option>
+            <option value="Mymensingh">Mymensingh</option>
+            <option value="Naogaon">Naogaon</option>
+
+            <option value="Narail">Narail</option>
+            <option value="Narayanganj">Narayanganj</option>
+            <option value="Narsingdi">Narsingdi</option>
+            <option value="Netrakona">Netrakona</option>
+            <option value="Nilphamari">Nilphamari</option>
+            <option value="Noakhali">Noakhali</option>
+            <option value="Pabna">Pabna</option>
+
+            <option value="Panchagarh">Panchagarh</option>
+            <option value="Patuakhali">Patuakhali</option>
+            <option value="Pirojpur">Pirojpur</option>
+            <option value="Rajbari">Rajbari</option>
+            <option value="Rajshahi">Rajshahi</option>
+            <option value="Rangamati">Rangamati</option>
+            <option value="Rangpur">Rangpur</option>
+            <option value="Satkhira">Satkhira</option>
+            <option value="Shariatpur">Shariatpur</option>
+            <option value="Sherpur">Sherpur</option>
+            <option value="Sirajganj">Sirajganj</option>
+            <option value="Sunamganj">Sunamganj</option>
+            <option value="Sylhet">Sylhet</option>
+            <option value="Tangail">Tangail</option>
+            <option value="Thakurgaon">Thakurgaon</option>
+          </select>
+          <input type="text" id="district_code" />
+          <button>Submit</button>
+        </form>
+
+        <!-- -------------------------------- view district ------------------------- -->
+        <br />
+        <table style="width: 100%">
+          <tr>
+            <th style="border: 1px solid red">District Name</th>
+            <th style="border: 1px solid red">District Code</th>
+            <th style="border: 1px solid red">Remove Item</th>
+          </tr>
+
+          <tr v-for="(item,index) in district" :key="index">
+            <td style="border: 1px solid red; text-align: center">
+              {{ item.district_name }}
+            </td>
+            <td style="border: 1px solid red; text-align: center">
+              {{ item.district_code }}
+            </td>
+
+            <td style="border: 1px solid red; text-align: center">
+              <button v-on:click="removeItem(index)">Remove Item</button>
+            </td>
+          </tr>
+        </table>
+
+        <!-- -------------------------------- view district ------------------------- -->
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- --------------- script --------------- -->
+
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello Vue!",
+      district: [],
+    },
+    methods: {
+      district_name_function(e) {
+        e.target.value == "bagerhat" ? (district_code.value = "BD4001") : "";
+        e.target.value == "Bandarban" ? (district_code.value = "BD2003") : "";
+        e.target.value == "Barguna" ? (district_code.value = "BD1004") : "";
+        e.target.value == "Barishal" ? (district_code.value = "BD1006") : "";
+        e.target.value == "Bhola" ? (district_code.value = "BD1009") : "";
+        e.target.value == "Bogura" ? (district_code.value = "BD5010") : "";
+        e.target.value == "Brahamanbaria"
+          ? (district_code.value = "BD2012")
+          : "";
+        e.target.value == "Chandpur" ? (district_code.value = "BD2013") : "";
+        e.target.value == "Chattogram" ? (district_code.value = "BD2015") : "";
+        e.target.value == "Chuadanga" ? (district_code.value = "BD4018") : "";
+        e.target.value == "Cumilla" ? (district_code.value = "BD2019") : "";
+        e.target.value == "Cox's Bazar" ? (district_code.value = "BD2022") : "";
+
+        e.target.value == "Dhaka" ? (district_code.value = "BD3026") : "";
+        e.target.value == "Dinajpur" ? (district_code.value = "BD5527") : "";
+        e.target.value == "Faridpur" ? (district_code.value = "BD3029") : "";
+        e.target.value == "Feni" ? (district_code.value = "BD2030") : "";
+        e.target.value == "Gaibandha" ? (district_code.value = "BD5532") : "";
+        e.target.value == "Gazipur" ? (district_code.value = "BD3033") : "";
+        e.target.value == "Gopalganj" ? (district_code.value = "BD3035") : "";
+        e.target.value == "Habiganj" ? (district_code.value = "BD6036") : "";
+
+        e.target.value == "Jamalpur" ? (district_code.value = "BD4539") : "";
+        e.target.value == "Jashore" ? (district_code.value = "BD4041") : "";
+        e.target.value == "Jhalokati" ? (district_code.value = "BD1042") : "";
+        e.target.value == "Jhenaidah" ? (district_code.value = "BD4044") : "";
+        e.target.value == "Joypurhat" ? (district_code.value = "BD5038") : "";
+        e.target.value == "Khagrachhari"
+          ? (district_code.value = "BD2046")
+          : "";
+        e.target.value == "Khulna" ? (district_code.value = "BD4047") : "";
+        e.target.value == "Kishoreganj" ? (district_code.value = "BD3048") : "";
+        e.target.value == "Kurigram" ? (district_code.value = "BD5549") : "";
+        e.target.value == "Kushtia" ? (district_code.value = "BD4050") : "";
+
+        e.target.value == "Lakshmipur" ? (district_code.value = "BD2051") : "";
+        e.target.value == "Lalmonirhat" ? (district_code.value = "BD5552") : "";
+        e.target.value == "Madaripur" ? (district_code.value = "BD3054") : "";
+        e.target.value == "Magura" ? (district_code.value = "BD4055") : "";
+        e.target.value == "Manikganj" ? (district_code.value = "BD3056") : "";
+        e.target.value == "Maulvibazar" ? (district_code.value = "BD6058") : "";
+        e.target.value == "Meherpur" ? (district_code.value = "BD4057") : "";
+        e.target.value == "Munshiganj" ? (district_code.value = "BD3059") : "";
+        e.target.value == "Mymensingh" ? (district_code.value = "BD4561") : "";
+        e.target.value == "Naogaon" ? (district_code.value = "BD5064") : "";
+
+        e.target.value == "Narail" ? (district_code.value = "BD4065") : "";
+        e.target.value == "Narayanganj" ? (district_code.value = "BD3067") : "";
+        e.target.value == "Narsingdi" ? (district_code.value = "BD3068") : "";
+        e.target.value == "Natore" ? (district_code.value = "BD5069") : "";
+        e.target.value == "Nawabganj" ? (district_code.value = "BD5070") : "";
+        e.target.value == "Netrakona" ? (district_code.value = "BD4572") : "";
+        e.target.value == "Nilphamari" ? (district_code.value = "BD5573") : "";
+        e.target.value == "Noakhali" ? (district_code.value = "BD2075") : "";
+        e.target.value == "Pabna" ? (district_code.value = "BD5076") : "";
+
+        e.target.value == "Panchagarh" ? (district_code.value = "BD5577") : "";
+        e.target.value == "Patuakhali" ? (district_code.value = "BD1078") : "";
+        e.target.value == "Pirojpur" ? (district_code.value = "BD1079") : "";
+        e.target.value == "Rajbari" ? (district_code.value = "BD3082") : "";
+        e.target.value == "Rajshahi" ? (district_code.value = "BD5081") : "";
+        e.target.value == "Rangamati" ? (district_code.value = "BD2084") : "";
+        e.target.value == "Rangpur" ? (district_code.value = "BD5585") : "";
+        e.target.value == "Satkhira" ? (district_code.value = "BD4087") : "";
+        e.target.value == "Shariatpur" ? (district_code.value = "BD3086") : "";
+        e.target.value == "Sherpur" ? (district_code.value = "BD4589") : "";
+        e.target.value == "Sirajganj" ? (district_code.value = "BD5088") : "";
+        e.target.value == "Sunamganj" ? (district_code.value = "BD6090") : "";
+        e.target.value == "Sylhet" ? (district_code.value = "BD6091") : "";
+        e.target.value == "Tangail" ? (district_code.value = "BD3093") : "";
+        e.target.value == "Thakurgaon" ? (district_code.value = "BD5594") : "";
+      },
+
+      add_district() {
+        const district_obj = {
+          district_name: district_name.value,
+          district_code: district_code.value,
+        };
+
+        this.district.push(district_obj);
+        // console.log(this.district);
+      },
+
+      removeItem(index) {
+        this.district.splice(index, 1);
+      },
+    },
+  });
+</script>
+
+<!-- --------------- script --------------- -->
